@@ -170,6 +170,7 @@ const ChatPage = () => {
         direction={"row"}
         justifyContent={"space-between"}
         alignItems={"flex-end"}
+        sx={{ marginTop: "0.5rem" }}
       >
         <Button>Chat</Button>
         <Button>Chat</Button>

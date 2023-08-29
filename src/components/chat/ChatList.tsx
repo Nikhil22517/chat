@@ -213,7 +213,7 @@ const ChatList = () => {
         </Box>
       )}
 
-      <Box sx={{ flex: 1, height: "90vh", overflow: "auto" }}>
+      <Box sx={{ flex: 1, height: "92vh", overflow: "auto" }}>
         {id ? (
           <ChatPage />
         ) : (
