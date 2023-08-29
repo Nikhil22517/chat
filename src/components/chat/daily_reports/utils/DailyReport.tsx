@@ -24,6 +24,7 @@ const DailyReport: FC<DailyReportProps> = (props) => {
           borderRadius: "0.4rem",
           height: "40vh",
           overflow: "auto",
+          marginBottom: "1rem",
         }}
       >
         <Stack
