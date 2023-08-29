@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Stack } from "@mui/material";
-import moment from "moment";
-
-import EmentorTable from "../utils/EmentorTable";
+import DailyReport from "./utils/DailyReport";
 const filterReport = (filterData: any) => {
   let obj: any = {
     "Sign/Signal Violations": 0,
@@ -98,7 +95,6 @@ const Data = [
 interface DriverReportProps {}
 
 const DriverReport: React.FC<DriverReportProps> = (props) => {
-  const {} = props;
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState({});
   const [tableHeader, setTableHeader] = useState<string[]>([]);
@@ -112,74 +108,13 @@ const DriverReport: React.FC<DriverReportProps> = (props) => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        // width: "100%",
-        padding: "1rem",
-        border: `1px solid grey`,
-        borderRadius: "0.4rem",
-        height: "40vh",
-        marginBottom: "1rem",
-        // minHeight: "30vh",
-        overflow: "auto",
-      }}
-    >
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={1}
-      >
-        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          Netradyne- Driver’s Report
-        </Typography>
-        {/* <DailyPreview
-            data={tableData}
-            header={tableHeader}
-            dates={dates}
-            headerLabelObj={headerLabel}
-            tableWidth="50vh"
-            reportName="Netradyne- Driver’s Report"
-          /> */}
-      </Stack>
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "80%",
-            fontSize: "1rem",
-            fontWeight: "bold",
-          }}
-        >
-          Loading...
-        </Box>
-      ) : (
-        <>
-          {Object.keys(tableData).length > 0 ? (
-            <EmentorTable
-              data={tableData}
-              header={tableHeader}
-              headerLabel={headerLabel}
-            />
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "80%",
-                fontSize: "1rem",
-                fontWeight: "bold",
-              }}
-            >
-              No Data Found
-            </Box>
-          )}
-        </>
-      )}
-    </Box>
+    <DailyReport
+      loading={loading}
+      tableData={tableData}
+      tableHeader={tableHeader}
+      reportName="Netradyne- Driver’s Report"
+      headerLabel={headerLabel}
+    />
   );
 };
 

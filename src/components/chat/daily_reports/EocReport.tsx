@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Stack, Typography } from "@mui/material";
 import moment from "moment";
-import BasicTable from "../utils/BasicTable";
-
+import DailyReport from "./utils/DailyReport";
 const filterReport = (filterData: any) => {
   const temp_data = filterData.map((el: any) => ({
     Date: moment(el.date).utc().format("MMM DD, YYYY"),
@@ -406,7 +404,6 @@ const Data = [
 interface EOCReportProps {}
 
 const EOCReport: React.FC<EOCReportProps> = (props) => {
-  const {} = props;
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
@@ -420,70 +417,12 @@ const EOCReport: React.FC<EOCReportProps> = (props) => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        // width: "100%",
-        padding: "1rem",
-        border: `1px solid grey`,
-        borderRadius: "0.4rem",
-        height: "40vh",
-        marginBottom: "1rem",
-        overflow: "auto",
-        // minHeight: "30vh",
-      }}
-    >
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={1}
-      >
-        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          EOC Report
-        </Typography>
-        {/* <DailyPreview
-          data={tableData}
-          header={tableHeader}
-          dates={dates}
-          tableWidth="80vh"
-          reportName="EOC Report"
-        /> */}
-      </Stack>
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "80%",
-            fontSize: "1rem",
-            fontWeight: "bold",
-          }}
-        >
-          Loading....
-        </Box>
-      ) : (
-        <>
-          {tableData.length > 0 ? (
-            <BasicTable data={tableData} header={tableHeader} />
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "80%",
-                fontSize: "1rem",
-                fontWeight: "bold",
-              }}
-            >
-              {" "}
-              No Data Found
-            </Box>
-          )}
-        </>
-      )}
-    </Box>
+    <DailyReport
+      loading={loading}
+      tableData={tableData}
+      tableHeader={tableHeader}
+      reportName="EOC Report"
+    />
   );
 };
 

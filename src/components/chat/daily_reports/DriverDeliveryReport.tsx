@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Stack, Theme, Typography } from "@mui/material";
 import moment from "moment";
-import BasicTable from "../utils/BasicTable";
-
+import DailyReport from "./utils/DailyReport";
 const Data = [
   {
     _id: "645a1f8b95875de134a33f79",
@@ -115,7 +113,6 @@ const filterReport = (filterData: any) => {
 interface SummaryReportProps {}
 
 const DriverDeliveryReport: React.FC<SummaryReportProps> = (props) => {
-  const {} = props;
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
@@ -130,69 +127,12 @@ const DriverDeliveryReport: React.FC<SummaryReportProps> = (props) => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        // width: "100%",
-        padding: "1rem",
-        border: `1px solid grey`,
-        borderRadius: "0.4rem",
-        height: "40vh",
-        marginBottom: "1rem",
-        // minHeight: "30vh",
-        overflow: "auto",
-      }}
-    >
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={1}
-      >
-        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          Package Summary
-        </Typography>
-        {/* <DailyPreview
-          data={tableData}
-          header={tableHeader}
-          dates={dates}
-          tableWidth="130vh"
-          reportName="Package Summary"
-        /> */}
-      </Stack>
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "80%",
-            fontSize: "1rem",
-            fontWeight: "bold",
-          }}
-        >
-          Loading...
-        </Box>
-      ) : (
-        <>
-          {tableData.length > 0 ? (
-            <BasicTable data={tableData} header={tableHeader} />
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "80%",
-                fontSize: "1rem",
-                fontWeight: "bold",
-              }}
-            >
-              No Data Found
-            </Box>
-          )}
-        </>
-      )}
-    </Box>
+    <DailyReport
+      loading={loading}
+      tableData={tableData}
+      tableHeader={tableHeader}
+      reportName="Package Summary"
+    />
   );
 };
 

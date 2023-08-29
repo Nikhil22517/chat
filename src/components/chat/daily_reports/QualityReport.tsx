@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Stack } from "@mui/material";
 import moment from "moment";
-import BasicTable from "../utils/BasicTable";
+import DailyReport from "./utils/DailyReport";
 const filterReport = (data: any) => {
   const temp_data: any[] = [];
 
@@ -60,13 +59,10 @@ const Data = [
 interface QualityReportProps {}
 
 const QualityReport: React.FC<QualityReportProps> = (props) => {
-  const {} = props;
-
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState<any>([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
 
-  //getting data from api call
   useEffect(() => {
     const { temp_data, temp_header } = filterReport(Data);
     setTableData(temp_data);
@@ -76,68 +72,12 @@ const QualityReport: React.FC<QualityReportProps> = (props) => {
 
   return (
     <>
-      <Box
-        sx={{
-          //   width: "100%",
-          padding: "1rem",
-          border: `1px solid grey`,
-          borderRadius: "0.4rem",
-          height: "40vh",
-          overflow: "auto",
-        }}
-      >
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          mb={1}
-        >
-          <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-            Quality Report
-          </Typography>
-          {/* <DailyPreview
-              data={tableData}
-              header={tableHeader}
-              dates={dates}
-              tableWidth="130vh"
-              reportName={"Quality Report"}
-            /> */}
-        </Stack>
-        {loading ? (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "80%",
-              fontSize: "1rem",
-              fontWeight: "bold",
-            }}
-          >
-            Loading....
-          </Box>
-        ) : (
-          <>
-            {tableData.length > 0 ? (
-              <BasicTable data={tableData} header={tableHeader} />
-            ) : (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "80%",
-                  fontSize: "1rem",
-                  fontWeight: "bold",
-                }}
-              >
-                {" "}
-                No Data Found
-              </Box>
-            )}
-          </>
-        )}
-      </Box>
+      <DailyReport
+        loading={loading}
+        tableData={tableData}
+        tableHeader={tableHeader}
+        reportName="Quality Report"
+      />
     </>
   );
 };

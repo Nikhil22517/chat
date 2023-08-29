@@ -18,6 +18,8 @@ interface AllAlertTableProps {
 const EmentorTable: React.FC<AllAlertTableProps> = (props: any) => {
   const { data, header, headerLabel } = props;
 
+  console.log(data);
+
   return (
     <Table>
       <TableHead>

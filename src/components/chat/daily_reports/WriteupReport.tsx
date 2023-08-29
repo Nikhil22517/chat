@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 
 import moment from "moment";
-import WriteupTable from "../utils/WriteUpTable";
+import WriteupTable from "./utils/WriteUpTable";
 import { Box } from "@mui/system";
 const filterReport = (filterData: any) => {
   const temp_data: any = [];

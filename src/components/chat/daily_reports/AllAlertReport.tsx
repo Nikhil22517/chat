@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Stack, Typography } from "@mui/material";
-
-import BasicTable from "../utils/BasicTable";
+import DailyReport from "./utils/DailyReport";
 
 const Data = [
   {
@@ -262,8 +260,6 @@ const filterReport = (filterData: any) => {
 interface AllAlertReportProps {}
 
 const AllAlertReport: React.FC<AllAlertReportProps> = (props) => {
-  const {} = props;
-
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [tableHeader, setTableHeader] = useState<string[]>([]);
@@ -277,71 +273,12 @@ const AllAlertReport: React.FC<AllAlertReportProps> = (props) => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        // width: "100%",
-        padding: "1rem",
-        border: `1px solid grey`,
-        borderRadius: "0.4rem",
-        height: "40vh",
-        marginBottom: "1rem",
-        // minHeight: "30vh",
-        overflow: "auto",
-      }}
-    >
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={1}
-      >
-        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          Netradyne- All alert report
-        </Typography>
-        {/* <DailyPreview
-          data={tableData}
-          header={tableHeader}
-          dates={dates}
-          tableWidth="80vh"
-          reportName="Netradyne- All alert report"
-        /> */}
-      </Stack>
-
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "80%",
-            fontSize: "1rem",
-            fontWeight: "bold",
-          }}
-        >
-          Loading...
-        </Box>
-      ) : (
-        <>
-          {tableData.length > 0 ? (
-            <BasicTable data={tableData} header={tableHeader} />
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "80%",
-                fontSize: "1rem",
-                fontWeight: "bold",
-              }}
-            >
-              {" "}
-              No Data Found
-            </Box>
-          )}
-        </>
-      )}
-    </Box>
+    <DailyReport
+      loading={loading}
+      tableData={tableData}
+      tableHeader={tableHeader}
+      reportName="Netradyne - All alert report"
+    />
   );
 };
 

@@ -16,12 +16,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import FilterList from "./utils/FilterList";
 import ChatProfile from "./chatProfile";
 import CloseIcon from "@mui/icons-material/Close";
+import ChatPage from "./ChatPage";
+import { useParams } from "react-router-dom";
 const ChatList = () => {
   const [text, setText] = useState<string>("");
   const [menu, setMenu] = useState<boolean>(false);
   const [broadcastOpen, setbroadCastOpen] = useState(false);
   const [broadUser, setBroadUser] = useState<any>([]);
   const [filterList, setFilterList] = useState("all");
+  const { id } = useParams();
   const fetchData = FakeData.map(
     (d) =>
       new UserDetails(
@@ -36,7 +39,7 @@ const ChatList = () => {
 
   const searchData = useMemo(() => {
     return UserDetails.filterByStatusAndSearch(fetchData, filterList, text);
-  }, [, filterList, text, fetchData]);
+  }, [filterList, text, fetchData]);
 
   const handleSelectAll = () => {
     const all = fetchData.map((item) => item.id);
@@ -50,6 +53,8 @@ const ChatList = () => {
   useEffect(() => {
     if (broadcastOpen) {
       setFilterList("active");
+    } else {
+      setFilterList("all");
     }
   }, [broadcastOpen]);
   return (
@@ -208,7 +213,23 @@ const ChatList = () => {
         </Box>
       )}
 
-      <Box sx={{ flex: 1, height: "85vh", overflow: "auto" }}>User</Box>
+      <Box sx={{ flex: 1, height: "90vh", overflow: "auto" }}>
+        {id ? (
+          <ChatPage />
+        ) : (
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography>Select Driver</Typography>
+          </Box>
+        )}
+      </Box>
     </Box>
   );
 };
