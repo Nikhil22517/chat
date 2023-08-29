@@ -18,6 +18,7 @@ import ChatProfile from "./chatProfile";
 import CloseIcon from "@mui/icons-material/Close";
 import ChatPage from "./ChatPage";
 import { useParams } from "react-router-dom";
+import BroadCast from "./Broadcast";
 const ChatList = () => {
   const [text, setText] = useState<string>("");
   const [menu, setMenu] = useState<boolean>(false);
@@ -214,20 +215,26 @@ const ChatList = () => {
       )}
 
       <Box sx={{ flex: 1, height: "92vh", overflow: "auto" }}>
-        {id ? (
-          <ChatPage />
+        {broadcastOpen ? (
+          <BroadCast broadUser={broadUser} />
         ) : (
-          <Box
-            sx={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography>Select Driver</Typography>
-          </Box>
+          <>
+            {id ? (
+              <ChatPage />
+            ) : (
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Typography>Select Driver</Typography>
+              </Box>
+            )}
+          </>
         )}
       </Box>
     </Box>
