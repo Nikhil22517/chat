@@ -153,7 +153,7 @@ const WriteUpReport = () => {
   }, []);
 
   return (
-    <Box sx={{ width: "100%", overflow: "auto" }}>
+    <>
       <WriteupTable
         title={"Write-up Report"}
         data={tableData}
@@ -161,7 +161,7 @@ const WriteUpReport = () => {
         hidePreview={true}
         loading={loading}
       />
-    </Box>
+    </>
   );
 };
 

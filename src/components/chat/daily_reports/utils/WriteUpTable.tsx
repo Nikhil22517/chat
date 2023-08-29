@@ -43,7 +43,7 @@ const WriteupTable: React.FC<TableDataProps> = (props: any) => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const OuterBoxStyle = {
-    width: "100%",
+    // width: "100%",
     borderRadius: "0.6rem",
     p: "1rem",
     pt: "0.4rem",
@@ -98,15 +98,8 @@ const WriteupTable: React.FC<TableDataProps> = (props: any) => {
             startIcon={<AddIcon sx={{ height: "1.2rem" }} />}
             onClick={() => setAddDrawer(true)}
             sx={{
-              // top: "1rem",
-              // right: "1rem",
               padding: "0.3rem 0.7rem",
-              // color: theme.palette.background.paper,
               borderRadius: "0.2rem",
-              // backgroundColor: theme.palette.primary.main,
-              "&:hover": {
-                //   backgroundColor: theme.palette.primary.main,
-              },
             }}
           >
             Add Report
@@ -158,15 +151,16 @@ const WriteupTable: React.FC<TableDataProps> = (props: any) => {
                         <TableCell
                           key={el}
                           sx={{
+                            padding: "1rem",
                             borderLeft: `1px solid grey`,
                             backgroundColor: "#E6F1F8",
                             "&.MuiTableCell-root": {
                               textAlign: "center !important",
                               paddingBlock: "1rem !important",
                             },
-                            // "&:first-child": {
-                            //   border: "0 !important",
-                            // },
+                            "&:first-child": {
+                              border: "0 !important",
+                            },
                           }}
                         >
                           {el}
@@ -187,6 +181,7 @@ const WriteupTable: React.FC<TableDataProps> = (props: any) => {
                                   key={head}
                                   sx={{
                                     borderLeft: `1px solid grey`,
+                                    whiteSpace: "nowrap",
                                     "&.MuiTableCell-root": {
                                       textAlign: "center !important",
                                     },
@@ -218,9 +213,9 @@ const WriteupTable: React.FC<TableDataProps> = (props: any) => {
                                     "&.MuiTableCell-root": {
                                       textAlign: "center !important",
                                     },
-                                    // "&:first-child": {
-                                    //   borderLeft: "0 !important",
-                                    // },
+                                    "&:first-child": {
+                                      borderLeft: "0 !important",
+                                    },
                                   }}
                                 >
                                   {getLabel(head, obj)}
